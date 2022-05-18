@@ -6,13 +6,31 @@ Assumptoions :
     1- Both of texts and calls are un-ordered.
     2- Time/Date Format would be fixed with any kind of input
 
-To get the oldest record in texts. I follow the hirearichy as following:
+
 printTheFirstRecordOfTexts() O(1) ===> execution not impacted versus input legnth, however it pass the input to 
-    getTheLastRecordOfCalls() O(n) ===> O(n) complexity as the execution would grow n times when the input legnth increments n units.
-        compareTwoTimestamps() O(1) ===> Considering the previous assumptions the execution wouldn't be impacted versus the input legnth. 
-            parseTimestamp() O(1) ===> Considering the previous assumptions the execution wouldn't be impacted versus the input legnth. 
+--->getTheLastRecordOfCalls() O(n) ===> O(n) complexity as the execution would grow n times when the input legnth increments n units.
+    --->compareTwoTimestamps() O(1) ===> Considering the previous assumptions the execution wouldn't be impacted versus the input legnth. 
+        --->parseTimestamp() O(1) ===> Considering the previous assumptions the execution wouldn't be impacted versus the input legnth. 
 From the previous call hirearichy, we can say that the total complexity would be O(n+1+1) -> O(n)
 
 and the same Analysis applied on the next part of the task to get the last record in the calls. 
 
 ****************************************************************************************
+=============
+## Task 1 ###
+=============
+Assumptoions : 
+    1- n = k(legnth of texts) + m(legnth of calls). the concatination would be O(n) complexity.
+
+To get how many different numbers in both of texts and calls, I follow the hirearichy as following:
+getCountOfDifferentNumbersInrecords() O(n) ===> concatinating the two records to make one records for both of calls' numbers and texts' numbers 
+                                    + O(n^2) complexity we have to iterate on the legnth of the input twice to identify if each element is counted before or not. 
+--->makeNumersList()  O(2n) ===> O(2n) complexity as the executed instructions increments two unit per 1 unit increse in the input legnth.
+
+
+From the previous call hirearichy, we can say that the total complexity would be O(n+2n+n^2)--> O(n^2+3n) -> O(n^2)
+
+****************************************************************************************
+=============
+## Task 2 ###
+=============
