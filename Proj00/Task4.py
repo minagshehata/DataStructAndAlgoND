@@ -24,11 +24,8 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
-
-""" 
-identify all telemarketers making calls
-remove numers if sending texts or receiving texts
-"""
+# Function to return area code of given number
+# O(1) complexity 
 def returnCodeOfNumber(number):
     code = "undefined"
     # Fixed lines
@@ -44,19 +41,31 @@ def returnCodeOfNumber(number):
         code = "140"
     return code
 
+# Function to return set with all the caller telemarketers
+# O(n) Complexity
 def addAllCallerTelemarketers(calls_,callerSet):
+    # iterate on the input to add the telemarketers to the set
+    # O(n) complexity
     for i in calls_:
         if returnCodeOfNumber(i[0]) == "140":
             callerSet.add(i[0])
     return callerSet
 
+# Function to remove the called telemarketers from given set
+# O(n) Complexity
 def removeCalledTelemarketers(calls_,callerSet):
+    # iterate on the input to remove the called telemarketers from the set
+    # O(n) complexity
     for i in calls_:
         if returnCodeOfNumber(i[1]) == "140":
             callerSet.remove(i[1])
     return callerSet
 
+# Function to remove the texted telemarketers from given set
+# O(n) Complexity
 def removeAllTexterTelemarketers(texts_,callerSet):
+    # iterate on the input to remove the texted or the texter telemarketers from the set
+    # O(n) complexity
     for i in texts_:
         if returnCodeOfNumber(i[0]) == "140":
             callerSet.remove(i[0])
@@ -65,17 +74,28 @@ def removeAllTexterTelemarketers(texts_,callerSet):
             callerSet.remove(i[1])    
     return callerSet
 
+# Function to get all the possible telemarketers sorted
+# O(3n+ n log n) Complexity
 def getThePossibleTelemarkters(calls_,texts_):
     callerSet =set()
+    # O(n) Complexity
     callerSet = addAllCallerTelemarketers(calls_,callerSet)
+    # O(n) Complexity
     callerSet = removeCalledTelemarketers(calls_,callerSet)
+    # O(n) Complexity
     callerSet = removeAllTexterTelemarketers(texts_,callerSet)
+    # sorted function has O(n log n) complexity
     callerSet = sorted(callerSet)
     return callerSet
-    
+
+# Function to print all the possible telemarketers sorted in the required format
+# O(3n+ n log n +n) Complexity
 def printThePossibleTelemarketers(calls_,texts_):
     print("These numbers could be telemarketers: ")
+    # O(3n+ n log n) Complexity
     set_= getThePossibleTelemarkters(calls_,texts_)
+    # Considering the worst case that all the caller numbers were for telemarketers
+    # the following print will carry O(n) complexity.
     for i in set_:
         print(i)
     return

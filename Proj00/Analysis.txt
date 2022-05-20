@@ -13,7 +13,7 @@ printTheFirstRecordOfTexts() O(1) ===> execution not impacted versus input legnt
         --->parseTimestamp() O(1) ===> Considering the previous assumptions the execution wouldn't be impacted versus the input legnth. 
 From the previous call hirearichy, we can say that the total complexity would be O(n+1+1) -> O(n)
 
-and the same Analysis applied on the next part of the task to get the last record in the calls. 
+and the same analysis should be applied on the next part of the task to get the last record in the calls. 
 
 ****************************************************************************************
 =============
@@ -24,7 +24,7 @@ Assumptoions :
 
 To get how many different numbers in both of texts and calls, I follow the hirearichy as following:
 getCountOfDifferentNumbersInrecords() O(n) ===> concatinating the two records to make one records for both of calls' numbers and texts' numbers 
-                                    + O(n^2) complexity we have to iterate on the legnth of the input twice to identify if each element is counted before or not. 
+                                    + O(n^2) complexity, we have to iterate on the legnth of the input twice to identify if each element is counted before or not. 
 --->makeNumersList()  O(2n) ===> O(2n) complexity as the executed instructions increments two unit per 1 unit increse in the input legnth.
 
 
@@ -34,3 +34,46 @@ From the previous call hirearichy, we can say that the total complexity would be
 =============
 ## Task 2 ###
 =============
+
+To get the number with the longest call duration, I follow the hirearichy as following:
+
+searchForTheLongestDuration() ===>  O(n^2) complexity, we have to iterate on the legnth of the input twice to identify if each element is counted and added to the dictionary before or not. 
+                            +  O(n) complexity, iterate on the constructed dictionary to fill the duration for each number and considering the worst case the complexity would be up to the total legnth of the input(n).
+                            +  O(2n) complexity, iterate on the dictionary one time to get the number with the longest duration.
+--->makeNumersList()  O(2n) ===> O(2n) complexity as the executed instructions increments two unit per 1 unit increse in the input legnth.
+
+From the previous call hirearichy, we can say that the total complexity would be O(n^2+2n+2n+n) = O(n^2+5n) -> O(n^2)
+
+****************************************************************************************
+=============
+## Task 3 ###
+=============
+
+To get all area codes targeted from Bangalore, I follow the hirearichy as following:
+
+printAllCalledCodesSorted() ===> O(n) complexity, to print area codes, code per line Considering the worst case that all the processed calls were made to different area codes
+--->getCalledCodes() ===> O(n) complexity, iterate on the full legnth input to construct list of all area codes.
+    ---> makeListOfDifferentCodes() ===> O(n^2) complexity,iterate on the legnth of the input twice to identify if each element is listed before or not. 
+    ---> sorted() ===> O(n log n) complexity
+
+note : returnCodeOfNumber() is excluded from the analysis as its time complexity = O(1)
+
+From the previous call hirearichy, we can say that the total complexity would be O(n+n^2+n log n + n) complexity -> O(n^2+n log n) 
+
+****************************************************************************************
+=============
+## Task 4 ###
+=============
+to to print all the possible telemarketers sorted, number per line, I follow the hirearichy as following:
+
+printThePossibleTelemarketers() ===> O(n) complexity, to print all posiible telemarketers number per line Considering the worst case that all callers in the data with possible telemarketers
+--->getThePossibleTelemarkters() 
+    ---> addAllCallerTelemarketers() ===> O(n) complexity, iterate on the input to add the telemarketers to the set.
+    ---> removeCalledTelemarketers() ===> O(n) complexity, iterate on the input to remove the called telemarketers from the set
+    ---> removeAllTexterTelemarketers() ===> O(n) complexity, iterate on the input to remove the texted and texter telemarketers from the set
+    ---> sorted() ===> O(n log n) complexity
+
+note :  returnCodeOfNumber() is excluded from the analysis as its time complexity = O(1)
+        set add, remove is excluded from the analysis as its time complexity = O(1) 
+
+From the previous call hirearichy, we can say that the total complexity would be O(4n+n log n) complexity -> O(n log n) 

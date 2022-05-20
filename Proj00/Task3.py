@@ -46,16 +46,8 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
-
-""" 
-1- loop on calls and 
-check if  the caller begin with bangalore code and 
-parse the receipant number 
-append the code of the receiver in another list
-2- pick the different element in the list 
-3- sort the list and print it. 
-"""
-
+# Function to return area code of given number
+# O(1) complexity 
 def returnCodeOfNumber(number):
   code = "undefined"
   # Fixed lines
@@ -71,8 +63,12 @@ def returnCodeOfNumber(number):
         code = "140"
   return code
 
+# Function to list all Different area codes made from Bangalore 
+# O(n^2) complexity
 def makeListOfDifferentCodes(list_):
     result = [list_[0]]
+    # we have to iterate on the legnth of the input twice to identify if each element is listed before or not. 
+    # O(n^2) complexity
     for i in range (1,len(list_)):
         for j in range(0,i+1):
             if (list_[i]==list_[j]):
@@ -80,11 +76,15 @@ def makeListOfDifferentCodes(list_):
         if (i == j ):
             result.append(list_[i])
     return result
-  
+
+# funtion to get sorted list of all Area codes made from Bangalore
+# O(n+n^2+n log n) complexity
 def getCalledCodes(calls_):
   listOfCodes= []
   allCallsFromBangalore=0
   callsFromBangaloreToBangalore=0
+  # iterate on the full legnth input to construct list of all area codes
+  # O(n) complexity
   for i in calls_:
         if i[0].startswith("(080)"):
           allCallsFromBangalore +=1
@@ -92,12 +92,19 @@ def getCalledCodes(calls_):
           listOfCodes.append(code)
           if code == "080":
               callsFromBangaloreToBangalore +=1
+  # O(n^2) complexity
   listOfDiffCodes = makeListOfDifferentCodes(listOfCodes)
+  # sorted function has O(n log n) complexity
   return sorted(listOfDiffCodes), (callsFromBangaloreToBangalore*100/allCallsFromBangalore)
 
+# Function to print all area codes called from Bangalore in the required format
+# O(n+n^2+n log n + n) complexity
 def printAllCalledCodesSorted(calls_):
       print("The numbers called by people in Bangalore have codes:")
+      # O(n+n^2+n log n) complexity
       list_ , BangolareCallsPercentage=getCalledCodes(calls_)
+      # Considering the worst case that all the processed calls were to different area codes:
+      # the following print will carry O(n) complexity.
       for i in list_:
             print(i)
       print(int(BangolareCallsPercentage),"percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
