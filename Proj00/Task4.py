@@ -24,75 +24,49 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
-# Function to return area code of given number
-# O(1) complexity 
-def returnCodeOfNumber(number):
-    code = "undefined"
-    # Fixed lines
-    if  number.startswith("(0") :
-        start = number.find("(") 
-        end = number.find(")")
-        code = number[start+1:end]
-    # Mobile Numbers
-    elif not (-1 == number.find(" ")) and (number.startswith("7") or number.startswith("8") or number.startswith("9") ):
-        code = number[0:4]
-    # Telemarketers 
-    elif number.startswith("140"):
-        code = "140"
-    return code
 
-# Function to return set with all the caller telemarketers
+# Function to return set with all the caller numbers
 # O(n) Complexity
-def addAllCallerTelemarketers(calls_,callerSet):
-    # iterate on the input to add the telemarketers to the set
+def addAllCallers(calls_,callerSet):
+    # iterate on the input to add the caller number to the set
     # O(n) complexity
-    for i in calls_:
-        if returnCodeOfNumber(i[0]) == "140":
-            callerSet.add(i[0])
+    for record in calls_:
+        callerSet.add(record[0])
     return callerSet
 
-# Function to remove the called telemarketers from given set
-# O(n) Complexity
-def removeCalledTelemarketers(calls_,callerSet):
-    # iterate on the input to remove the called telemarketers from the set
-    # O(n) complexity
-    for i in calls_:
-        if returnCodeOfNumber(i[1]) == "140":
-            callerSet.remove(i[1])
-    return callerSet
-
-# Function to remove the texted telemarketers from given set
-# O(n) Complexity
-def removeAllTexterTelemarketers(texts_,callerSet):
-    # iterate on the input to remove the texted or the texter telemarketers from the set
-    # O(n) complexity
-    for i in texts_:
-        if returnCodeOfNumber(i[0]) == "140":
-            callerSet.remove(i[0])
-
-        if returnCodeOfNumber(i[1]) == "140":
-            callerSet.remove(i[1])    
+# Function to delete from given set any number received a call or a text or send a text
+# Assumiing n = legnth of calls_(k) and legnth of texts(m) -->  O(n) Complexity
+def removeNonTelemarketers(calls_,texts_,callerSet):
+    # O(k) complexity
+    for record in calls_:
+        callerSet.discard(record[1])
+    # O(m) complexity
+    for record in texts_:
+        callerSet.discard(record[0])
+        callerSet.discard(record[1])
+        
     return callerSet
 
 # Function to get all the possible telemarketers sorted
-# O(3n+ n log n) Complexity
+# O(2n+ n log n) Complexity
 def getThePossibleTelemarkters(calls_,texts_):
     callerSet =set()
+    
     # O(n) Complexity
-    callerSet = addAllCallerTelemarketers(calls_,callerSet)
+    callerSet = addAllCallers(calls_,callerSet)
+    
     # O(n) Complexity
-    callerSet = removeCalledTelemarketers(calls_,callerSet)
-    # O(n) Complexity
-    callerSet = removeAllTexterTelemarketers(texts_,callerSet)
+    callerSet = removeNonTelemarketers(calls_,texts_,callerSet)
+
     # sorted function has O(n log n) complexity
     callerSet = sorted(callerSet)
     return callerSet
 
 # Function to print all the possible telemarketers sorted in the required format
-# O(3n+ n log n +n) Complexity
+# O(2n+ n log n +n) Complexity
 def printThePossibleTelemarketers(calls_,texts_):
     print("These numbers could be telemarketers: ")
-    # O(3n+ n log n) Complexity
+    # O(2n+ n log n) Complexity
     set_= getThePossibleTelemarkters(calls_,texts_)
     # Considering the worst case that all the caller numbers were for telemarketers
     # the following print will carry O(n) complexity.

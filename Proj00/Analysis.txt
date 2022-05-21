@@ -68,12 +68,10 @@ to to print all the possible telemarketers sorted, number per line, I follow the
 
 printThePossibleTelemarketers() ===> O(n) complexity, to print all posiible telemarketers number per line Considering the worst case that all callers in the data with possible telemarketers
 --->getThePossibleTelemarkters() 
-    ---> addAllCallerTelemarketers() ===> O(n) complexity, iterate on the input to add the telemarketers to the set.
-    ---> removeCalledTelemarketers() ===> O(n) complexity, iterate on the input to remove the called telemarketers from the set
-    ---> removeAllTexterTelemarketers() ===> O(n) complexity, iterate on the input to remove the texted and texter telemarketers from the set
+    ---> addAllCallers() ===> O(n) complexity, iterate on the input to add the telemarketers to the set.
+    ---> removeNonTelemarketers() ===> O(n) complexity, iterate on the input to remove the not possible telemarketers numbers.
     ---> sorted() ===> O(n log n) complexity
 
-note :  returnCodeOfNumber() is excluded from the analysis as its time complexity = O(1)
-        set add, remove is excluded from the analysis as its time complexity = O(1) 
+note :  set add, discard is excluded from the analysis as its time complexity = O(1) 
 
-From the previous call hirearichy, we can say that the total complexity would be O(4n+n log n) complexity -> O(n log n) 
+From the previous call hirearichy, we can say that the total complexity would be O(3n+n log n) complexity -> O(n log n) 

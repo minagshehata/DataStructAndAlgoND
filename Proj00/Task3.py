@@ -107,6 +107,6 @@ def printAllCalledCodesSorted(calls_):
       # the following print will carry O(n) complexity.
       for i in list_:
             print(i)
-      print(int(BangolareCallsPercentage),"percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
+      print("%.2f  percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore."% float(BangolareCallsPercentage),)
       
 printAllCalledCodesSorted(calls)
