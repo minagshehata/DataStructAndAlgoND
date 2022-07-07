@@ -105,12 +105,11 @@ group_2.add_group(group_4)
 group_4.add_group(group_5)
 
 print( is_user_in_group(user_15, group_1) )
+print( is_user_in_group(user_1, group_1) )
+print( is_user_in_group(user_10, group_1) )
+# Test Case 2
 print( is_user_in_group(user_16, group_1) )
 print( is_user_in_group(user_1, group_2) )
-print( is_user_in_group(user_1, group_1) )
+# Test Case 3
 print( is_user_in_group("", group_1) )
 print( is_user_in_group(None, group_1) )
-
-# Test Case 2
-
-# Test Case 3
