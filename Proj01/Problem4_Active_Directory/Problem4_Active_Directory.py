@@ -1,35 +1,45 @@
+# Group Class
 class Group(object):
+    # The constructor method of Group 
     def __init__(self, _name):
         self.name = _name
         self.groups = []
         self.users = []
 
+    # Function to add group 
     def add_group(self, group):
         self.groups.append(group)
 
+    # Function to add user
     def add_user(self, user):
         self.users.append(user)
 
+    # Function to get the group of this group object
     def get_groups(self):
         return self.groups
 
+    # Function to get the user of this group object
     def get_users(self):
         return self.users
 
+    # Function to get the name of this group object
     def get_name(self):
         return self.name
 
-
+# Create Group with name parent 
 parent = Group("parent")
+# Create Group with name child 
 child = Group("child")
+# Create Group with name subchild 
 sub_child = Group("subchild")
 
 sub_child_user = "sub_child_user"
+# add user with name "sub_child_user"
 sub_child.add_user(sub_child_user)
-
+# add group "sub_child" to group "child"
 child.add_group(sub_child)
+# add group "child" to group "parent"
 parent.add_group(child)
-
 
 
 def is_user_in_group(user, group):
@@ -40,19 +50,23 @@ def is_user_in_group(user, group):
       user(str): user name/id
       group(class:Group): group to check user membership against
     """
+    # terminator condition if user is found 
     if user in group.get_users():
         return True
     
+    # iterate on the sub groups
     for grp in group.get_groups() : 
+        # recursive call till find the user or finish the list of groups
         if is_user_in_group(user,grp) : 
             return True
-    
+        
+    # by default return False 
     return False
 
 # Add your own test cases: include at least three test cases
 # and two of them must include edge cases, such as null, empty or very large values
 
-# Test Case 1
+# prepare the test
 group_1 = Group("group 1 ")
 group_2 = Group("group 2 ")
 group_3 = Group("group 3 ")
@@ -104,12 +118,22 @@ group_2.add_group(group_3)
 group_2.add_group(group_4)
 group_4.add_group(group_5)
 
+# Test Case 1
 print( is_user_in_group(user_15, group_1) )
+# Expected True
 print( is_user_in_group(user_1, group_1) )
+# Expected True
 print( is_user_in_group(user_10, group_1) )
+# Expected True
+
 # Test Case 2
 print( is_user_in_group(user_16, group_1) )
+# Expected False
 print( is_user_in_group(user_1, group_2) )
+# Expected False
+
 # Test Case 3
 print( is_user_in_group("", group_1) )
+# Expected False
 print( is_user_in_group(None, group_1) )
+# Expected False

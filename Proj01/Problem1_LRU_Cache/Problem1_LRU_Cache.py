@@ -172,7 +172,7 @@ our_cache.set(4, 4);
 print(our_cache)
 print (our_cache.get(1))       # returns 1
 print (our_cache.get(2))       # returns 2
-print (our_cache.get(9))      # returns -1 because 9 is not present in the cache
+print (our_cache.get(9))       # returns -1 because 9 is not present in the cache
 
 our_cache.set(5, 5) 
 our_cache.set(6, 6)
@@ -202,25 +202,44 @@ our_cache_1.set(12,12)
 
 
 print("***\ntest cases \n")
-print ( our_cache_1.DbleLinkedList.size())
+print ( our_cache_1.DbleLinkedList.size()) 
+# should return 10 
 print (our_cache_1.get(0))  
+# should return 1
 print (our_cache_1.get(-1))   
+# should return 2
 print (our_cache_1.get(3))
+# should return 3
 print (our_cache_1.get(4))
+# should return 4
 print (our_cache_1.get(5))
+# should return 5
 print (our_cache_1.get(None) ) 
+# should return -1
 print (our_cache_1.get(7))
+# should return 7
 print (our_cache_1.get(8))
+# should return 8
 print (our_cache_1.get(999999999999999999999999999999999999999.99999999999999999))
+# should return 9
 print (our_cache_1.get(999999999999999999999999999999999999999))
+# should return -1
 print (our_cache_1.get(10))
+# should return 11
+
+
 our_cache_1.set(12,13)
 our_cache_1.set(12,14)
 our_cache_1.set(13,15)
 our_cache_1.set(4,16)
 our_cache_1.set(14,17)
+
 # the next two key should be removed from  the Queue
 print (our_cache_1.get(0))   
+# should return -1
 print (our_cache_1.get(-1))   
+# should return -1
+
 # test the tenth element in the queue still Ok 
 print (our_cache_1.get(3))   
+# should return 3

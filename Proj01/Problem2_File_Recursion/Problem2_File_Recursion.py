@@ -16,12 +16,14 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
+    if path is None or path is "" : 
+        return ["Path is Invalid"]
     # an empty list 
     out = [] 
     # list of all components (Files/Directories) under the original path 
-    list_of_components = os.listdir(path)
+    list_of_sub_entities = os.listdir(path)
     
-    for component in list_of_components :
+    for component in list_of_sub_entities :
         # concatenate the component name to the original path name
         full_path = os.path.join(path,component)
         # check if the component is directory 
@@ -43,14 +45,36 @@ def find_files(suffix, path):
 
 # Test Case 1
 print("\n=========== test case 1 ===========\n")
-for i in (find_files(".py","../../")):
-    print(i)
+for file in (find_files(".py","../../")):
+    print(file)
+# ---> Should print every python file in the given directory 
+
 # Test Case 2
 print("\n=========== test case 2 ===========\n")
-for i in (find_files("","../../")):
-    print(i)
+for file in (find_files("","../../")):
+    print(file)
+# ---> Should print every thing in the given directory
+
 # Test Case 3
 print("\n=========== test case 3 ===========\n")
-for i in (find_files(".c","./testdir")):
-    print(i)
-    
+for file in (find_files(".c","./testdir")):
+    print(file)
+# ---> Should print each .c file in the given path
+ 
+# Test Case 4
+print("\n=========== test case 4 ===========\n")
+for file in (find_files("","")):
+    print(file)
+# ---> Should print invalid path
+
+# Test Case 5
+print("\n=========== test case 5 ===========\n")
+for file in (find_files(".c","/home/minashehata/")):
+    print(file)
+# ---> Should print all the files in the user directory
+
+# Test Case 6
+print("\n=========== test case 6 ===========\n")
+for file in (find_files("","./testdir")):
+    print(file)
+# ---> Should print every thing in the given directory
